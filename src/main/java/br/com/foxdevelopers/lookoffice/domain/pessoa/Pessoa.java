@@ -1,5 +1,6 @@
 package br.com.foxdevelopers.lookoffice.domain.pessoa;
 
+import br.com.foxdevelopers.lookoffice.domain.usuario.Usuario;
 import br.com.foxdevelopers.lookoffice.security.enums.ProfileEnum;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import org.hibernate.validator.constraints.Email;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "pessoa")
 public class Pessoa {
 
     @Id
@@ -30,15 +32,20 @@ public class Pessoa {
     @Setter
     private String email;
 
-    @Column(name = "senha")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "frequencia")
     @Getter
     @Setter
-    private String senha;
+    private Usuario usuario;
 
-    @Column(name = "profile")
-    @Getter
-    @Setter
-    private ProfileEnum profile;
+//    @Column(name = "senha")
+//    @Getter
+//    @Setter
+//    private String senha;
+//
+//    @Column(name = "profile")
+//    @Getter
+//    @Setter
+//    private ProfileEnum profile;
 
 
 }
